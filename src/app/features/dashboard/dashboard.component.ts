@@ -55,14 +55,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
        this.store.dispatch(getRecentReports());
      });
 
-    this.welcomeSub = this.store.select(selectFirstLogin)
-      .pipe(
-        filter(first => !!first),
-        take(1)
-      )
-      .subscribe(() => {
-        this.showWelcome();
-      });
+    
   }
 
   public redirectToWorkers() {
@@ -78,8 +71,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   private showWelcome() {
-    this.dialog.open(WelcomeMessageComponent).afterClosed()
-      .subscribe(() => this.store.dispatch(firstLogin({first: false})));
+   
   }
 
   setWidth(width: number) {

@@ -86,8 +86,8 @@ export class HeaderComponent {
   }
 
   openWelcome(event: MouseEvent) {
-    event.preventDefault();
-    this.dialog.open(WelcomeMessageComponent, {data: {step: 2}});
+   // event.preventDefault();
+   // this.dialog.open(WelcomeMessageComponent, {data: {step: 2}});
   }
 
   openAppsAwareness($event: MouseEvent) {

@@ -2,195 +2,447 @@
 @import "mixins/link";
 
 :host {
-  .marketing-content-bottom {
+  // Main container styles
+  .login-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
     align-items: center;
     justify-content: center;
-
-    .link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      font-size: 12px;
-    }
-
-    .community-links {
-      .link {
-        margin: 0 12px;
-        cursor: pointer;
-
-        i {
-          color: #8492c2 !important;
-        }
-      }
-    }
-
-    ntkme-github-button {
-      ::ng-deep a.gh-btn, ::ng-deep a.social-count {
-        text-decoration: none;
-
-        &:hover {
-          font-weight: bold;
-        }
-      }
-    }
-  }
-
-  .login-form {
-    color: rgba(0, 0, 0, 0.87);
-    flex-direction: column;
-    overflow: auto;
-
-    background: white;
-    flex: 1;
+    min-height: 100vh;
+    width: 100%;
+    color: #39393D; // neutral-25
+    background-color: #FAF9FD; // neutral-98
+    transition: all 0.3s ease;
     padding: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-
+    overflow: auto;
+    
     &.dark-theme {
-      color: rgba(255, 255, 255, 0.87);
-      background-image: url(../../assets/infinity_anim--on_light.svg), linear-gradient(100deg, #22408a 6%, #09173c 82%);
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    @media(max-width: 420px) {
-      max-width: unset;
-      height: 100vh;
-      width: 100vw;
-      padding-top: 30px;
-    }
-
-    .login-section {
-      display: flex;
-      flex: 1;
-      padding: 24px 0;
-      text-align: center;
-
-      @media(max-width: 655px) {
-        overflow: unset;
-      }
-
-      .logo {
-        width: 150px;
-      }
-
-      .login-title {
-        font-weight: 500;
-        font-size: 20px;
-        color: #ffffff;
-        max-width: 320px;
-        min-height: 30px;
-        white-space: pre-line;
-      }
-
-      .login-notice {
-        color: #fff;
-        margin-bottom: 5px;
-      }
-
-      section {
-        width: 320px;
-        margin: auto;
-      }
-
-      .login-error {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-      }
-    }
-
-    mat-form-field {
-      width: 100%;
-    }
-
-    button {
-      width: 100%;
-      margin: 16px 0 32px 0;
-
-      .spinner {
+      color: #F2F0F4; // neutral-95
+      background: linear-gradient(135deg, #331200 0%, #4D1F00 100%); // primary-10 to primary-20
+      position: relative;
+      
+      &::before {
+        content: '';
         position: absolute;
-        left: 75px;
-      }
-    }
-
-    .separator {
-      display: flex;
-      justify-content: center;
-      color: var(--color-secondary-fixed-dim);
-      font-size: 11px;
-
-      .line {
-        width: 104px;
-        margin-bottom: 10px;
-      }
-    }
-
-    .terms-of-use {
-      display: inline-block;
-      color: rgba(0, 0, 0, 0.87);
-      font-size: 11px;
-      margin-left: -2px;
-    }
-  }
-
-  &.dark-theme {
-    .login-form .terms-of-use {
-      color: rgba(255, 255, 255, 0.87);
-
-      a[href] {
-        color: #A1C9FF;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets/infinity_anim--on_light.svg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.04;
+        z-index: 0;
       }
     }
   }
-}
-
-
-.circle {
-  margin: 0 auto 40px;
-  width: 80px;
-  height: 80px;
-  border-radius: 100%;
-  border: 10px solid rgba(255, 255, 255, 0.5);
-  border-top-color: #FFFFFF;
-  animation: spin 1s infinite linear;
-  @keyframes spin {
-    100% {
-      transform: rotate(360deg);
+  
+  // Login card styles
+  .login-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    z-index: 1;
+    border-radius: 16px;
+    background: #FFFFFF; // neutral-100
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    
+    .dark-theme & {
+      background: rgba(45, 45, 49, 0.6); // neutral-30 with opacity
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
   }
-
-}
-
-.errors {
-  width: 250px;
-  max-height: 100px;
-  overflow: auto;
-  color: var(--color-error);
-  text-align: left;
-}
-
-.other-email {
-  margin-top: 16px;
-  text-align: left;
-}
-
-:host-context(.mobile) {
+  
+  // Login form section
+  .login-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 32px;
+    position: relative;
+    
+    .logo-container {
+      margin-bottom: 24px;
+      
+      .logo {
+        width: 180px;
+        height: auto;
+      }
+    }
+    
+    .login-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-align: center;
+      color: #333;
+      
+      .dark-theme & {
+        color: #F2F0F4; // neutral-95
+      }
+    }
+    
+    .login-notice {
+      font-size: 14px;
+      margin-bottom: 24px;
+      text-align: center;
+      color: #5D5D62; // neutral-40
+      
+      .dark-theme & {
+        color: #C7C6CA; // neutral-80
+      }
+    }
+  }
+  
+  // Form controls
   .login-form {
-    padding-top: 64px;
+    width: 100%;
+    box-sizing: border-box !important; // Fix: Ensure proper sizing
+    
+    .form-field {
+      margin-bottom: 16px;
+      width: 100% !important; // Fix: Ensure full width
+      box-sizing: border-box !important; // Fix: Proper sizing
+      
+      mat-form-field {
+        width: 100% !important; // Fix: Ensure full width
+        box-sizing: border-box !important; // Fix: Proper sizing
+        
+        ::ng-deep {
+          .mat-mdc-form-field-flex {
+            border-radius: 8px;
+            width: 100% !important; // Fix: Ensure full width
+          }
+          
+          .mat-mdc-text-field-wrapper {
+            background-color: #F5F3F7; // neutral-96
+            width: 100% !important; // Fix: Ensure full width
+            box-sizing: border-box !important; // Fix: Proper sizing
+            
+            .dark-theme & {
+              background-color: rgba(69, 69, 74, 0.5); // neutral-30 with opacity
+            }
+          }
+          
+          .mat-mdc-form-field-outline {
+            color: #C7C6CA; // neutral-80
+            
+            .dark-theme & {
+              color: rgba(201, 199, 204, 0.3); // neutral-80 with opacity
+            }
+          }
+          
+          .mat-mdc-form-field-outline-thick {
+            color: #B95600; // primary-50
+            
+            .dark-theme & {
+              color: #D66A14; // primary-60
+            }
+          }
+          
+          // Fix: Handle text overflow in the label
+          .mat-mdc-floating-label {
+            color: #45454A; // neutral-30
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            width: 90% !important;
+            
+            .dark-theme & {
+              color: #E3E2E6; // neutral-90
+            }
+          }
+          
+          // Fix: Handle text overflow in the input
+          .mat-mdc-input-element {
+            color: #45454A; // neutral-30
+            width: 100% !important;
+            box-sizing: border-box !important;
+            text-overflow: ellipsis !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+            
+            .dark-theme & {
+              color: #E3E2E6; // neutral-90
+            }
+          }
+          
+          // Fix: Form field infix sizing
+          .mat-mdc-form-field-infix {
+            width: 100% !important;
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+    
+    .input-field {
+      padding: 16px;
+      font-size: 15px;
+      width: 100% !important; // Fix: Ensure full width
+      box-sizing: border-box !important; // Fix: Proper sizing
+      text-overflow: ellipsis !important; // Fix: Handle text overflow
+      overflow: hidden !important; // Fix: Handle text overflow
+      white-space: nowrap !important; // Fix: Handle text overflow
+    }
+    
+    .error-message {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #DD3730; // error-50
+      font-size: 14px;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      background-color: rgba(255, 84, 73, 0.1); // error-60 with opacity
+      border-radius: 6px;
+      
+      svg {
+        flex-shrink: 0;
+      }
+    }
+    
+    .login-button {
+      width: 100%;
+      padding: 12px 24px;
+      margin: 16px 0 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background-color: #B95600; // primary-50
+      color: white;
+      border: none;
+      transition: all 0.2s ease;
+      position: relative;
+      
+      &:disabled {
+        background-color: #76767B; // neutral-50
+        cursor: not-allowed;
+      }
+      
+      &:not(:disabled):hover {
+        background-color: #D66A14; // primary-60
+        box-shadow: 0 4px 12px rgba(185, 86, 0, 0.2); // primary-50 with opacity
+      }
+      
+      .spinner {
+        margin: 0 auto;
+      }
+      
+      .dark-theme & {
+        background-color: #D66A14; // primary-60
+        
+        &:not(:disabled):hover {
+          background-color: #E88234; // primary-70
+        }
+      }
+    }
   }
-}
+  
+  // Terms container
+  .terms-container {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #76767B; // neutral-50
+    text-align: center;
+    margin-top: 16px;
+    
+    .terms-item {
+      margin-bottom: 8px;
+    }
+    
+    .terms-link {
+      color: #B95600; // primary-50
+      text-decoration: none;
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: #D66A14; // primary-60
+        text-decoration: underline;
+      }
+      
+      .dark-theme & {
+        color: #F79A55; // primary-80
+        
+        &:hover {
+          color: #FFB77D; // primary-90
+        }
+      }
+    }
+    
+    .dark-theme & {
+      color: #C7C6CA; // neutral-80
+    }
+  }
+  
+  // Error section
+  .error-section {
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    .error-icon {
+      margin: 24px 0;
+    }
+    
+    .error-message-text {
+      color: #76767B; // neutral-50
+      font-size: 16px;
+      max-width: 320px;
+      
+      .dark-theme & {
+        color: #C7C6CA; // neutral-80
+      }
+    }
+  }
+  
+  // Loading spinner
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    margin: 24px auto;
+    border-radius: 50%;
+    border: 3px solid rgba(185, 86, 0, 0.1); // primary-50 with opacity
+    border-top-color: #B95600; // primary-50
+    animation: spinner 1s infinite linear;
+    
+    .dark-theme & {
+      border: 3px solid rgba(214, 106, 20, 0.1); // primary-60 with opacity
+      border-top-color: #D66A14; // primary-60
+    }
+    
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  
+  // Footer content
+  .footer-content {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 1;
+    position: relative;
+    
+    ntkme-github-button {
+      ::ng-deep {
+        a.gh-btn, a.social-count {
+          text-decoration: none;
+          border-radius: 4px;
+          
+          &:hover {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    
+    .github-text {
+      font-size: 14px;
+      color: #76767B; // neutral-50
+      
+      .dark-theme & {
+        color: #C7C6CA; // neutral-80
+      }
+      
+      .github-link {
+        color: #B95600; // primary-50
+        text-decoration: none;
+        transition: color 0.2s ease;
+        
+        &:hover {
+          color: #D66A14; // primary-60
+          text-decoration: underline;
+        }
+        
+        .dark-theme & {
+          color: #F79A55; // primary-80
+          
+          &:hover {
+            color: #FFB77D; // primary-90
+          }
+        }
+      }
+    }
+    
+    .community-links {
+      display: flex;
+      gap: 24px;
+      margin-top: 8px;
+      
+      .community-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #76767B; // neutral-50
+        text-decoration: none;
+        transition: color 0.2s ease;
+        
+        i {
+          color: #B95600 !important; // primary-50
+          
+          .dark-theme & {
+            color: #F79A55 !important; // primary-80
+          }
+        }
+        
+        &:hover {
+          color: #5D5D62; // neutral-40
+          
+          .dark-theme & {
+            color: #E3E2E6; // neutral-90
+          }
+        }
+        
+        .dark-theme & {
+          color: #C7C6CA; // neutral-80
+        }
+      }
+    }
+  }
+  
+  // Media queries for responsiveness
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 16px;
+    }
+    
+    .login-card {
+      max-width: 100%;
+    }
+    
+    .login-form-section {
+      padding: 32px 24px;
+    }
+  }
+  
+  // Input autofill styling
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px #F5F3F7 inset; // neutral-96
+    -webkit-text-fill-color: #45454A; // neutral-30
+    transition: background-color 5000s ease-in-out 0s;
+    
+    .dark-theme & {
+      -webkit-box-shadow: 0 0 0 50px #45454A inset; // neutral-30
+      -webkit-text-fill-color: #E3E2E6; // neutral-90
+    }
+  }
 
-input:-webkit-autofill {
-  background-color: transparent !important;
-  -webkit-box-shadow: 0 0 0 50px var(--color-surface-container) inset;
-  -webkit-text-fill-color: var(--color-on-surface);
+  // Fix: Ensure all elements use border-box sizing
+  * {
+    box-sizing: border-box;
+  }
 }

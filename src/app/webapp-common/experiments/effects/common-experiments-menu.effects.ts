@@ -121,20 +121,7 @@ export class CommonExperimentsMenuEffects {
     )
   ));
 
-  openMessage = createEffect(() => this.actions$.pipe(
-    ofType(menuActions.openEmptyQueueMessage),
-    concatLatestFrom(() => this.store.select(selectNeverShowPopups)),
-    switchMap(([action, neverShowAgainPopups]) => !neverShowAgainPopups.includes('orphanedQueue') ?
-        this.dialog.open<WelcomeMessageComponent, WelcomeMessageData, boolean>(WelcomeMessageComponent, {
-          data: {
-            queue: action.queue,
-            entityName: action.entityName,
-            step: 2
-          }
-        }).afterClosed() : of(null)
-    ),
-    map(doNotShowAgain => doNotShowAgain ? neverShowPopupAgain({popupId: 'orphanedQueue'}) : emptyAction())
-  ));
+  
 
   startPipeline$ = createEffect(() => this.actions$.pipe(
     ofType(menuActions.startPipeline),
