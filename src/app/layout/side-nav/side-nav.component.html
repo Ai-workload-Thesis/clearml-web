@@ -1,7 +1,7 @@
 <div class="logo">
   <img
     [ngSrc]="darkTheme() ? environment().branding.logoSmall : environment().branding.logoSmall.replace('-white', '')"
-    [priority]="true" alt="clearML" class="logo-a" width="64" height="64">
+    [priority]="true" alt="ThalosML" class="logo-a" width="64" height="64">
 </div>
 
 @if (currentUser()) {
@@ -32,24 +32,5 @@
        [class.active]="baseRouteConfig() ==='pipelines'"
        smTooltip="PIPELINES"
     ></a>
-    @if (!hideEnterpriseFeatures()) {
-      <a class="item al-ico-enterprise-rocket lm"
-         routerLink="enterprise"
-         routerLinkActive="active"
-         smTooltip="EXPLORE CLEARML ENTERPRISE"
-      ></a>
-    }
-  </div>
-}
-@if (currentUser()) {
-  <div class="account">
-    @if (environment().slackLink) {
-      <a class="item" [href]="environment().slackLink"
-         target="_blank"
-         smTooltip="Community support on Slack"
-      >
-        <i class="i-slack-mark-color"></i>
-      </a>
-    }
   </div>
 }

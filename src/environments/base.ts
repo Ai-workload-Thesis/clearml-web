@@ -70,9 +70,9 @@ export const BASE_ENV = {
   production: true,
   apiBaseUrl: null,
   fileBaseUrl: null,
-  productName: 'clearml',
+  productName: 'ThalosML',
   demo: false,
-  headerPrefix: 'X-Clearml',
+  headerPrefix: 'X-ThalosML',
   version: versionConf.version,
   userKey: 'EYVQ385RW7Y2QQUH88CZ7DWIQ1WUHP',
   userSecret: 'XhkH6a6ds9JBnM_MrahYyYdO-wS2bqFSm8gl-V0UZXH26Ydd6Eyi28TeBEoSr6Z3Bes',
@@ -98,7 +98,7 @@ export const BASE_ENV = {
   slackLink: 'https://joinslack.clear.ml',
   docsLink: 'https://clear.ml/docs',
   branding: {logo: 'assets/logo-white.svg?v=7', logoSmall: 'assets/small-logo-white.svg?=2'},
-  serverDownMessage: 'The ClearML server is currently unavailable.<BR>' +
+  serverDownMessage: 'The ThalosML server is currently unavailable.<BR>' +
     'Please try to reload this page in a little while.<BR>' +
     'If the problem persists, verify your network connection is working and check the ClearML server logs for possible errors',
   newExperimentYouTubeVideoId: 's3k9ntmQmD4',

@@ -44,9 +44,7 @@
   @if (!hideMenus()) {
     <div class="right-buttons" data-id="rightSideHeaderpanel">
       <sm-common-search #search [class.share-view]="isShareMode()"></sm-common-search>
-      <button mat-icon-button #trigger="matMenuTrigger" class="resources-trigger" [class.menu-opened]="trigger.menuOpen" [matMenuTriggerFor]="resourcesMenu">
-          <mat-icon fontSet="al" fontIcon="al-ico-help-outlined" data-id="help Icon"></mat-icon>
-      </button>
+      
       <span class="pointer menu-trigger position-relative" data-id="Avatar" [matMenuTriggerFor]="profileMenu">
         @if (user().avatar; as avatar) {
           <img alt="avatar" class="avatar" [src]="avatar">
@@ -79,45 +77,7 @@
           Logout
         </button>
       </mat-menu>
-      <mat-menu #resourcesMenu="matMenu" class="user-menu light-theme" panelClass="light-theme">
-        <button mat-menu-item (click)="openWelcome($event)" data-id="Python Package setup Option">
-          <mat-icon fontSet="al" fontIcon="al-ico-code-file">Code</mat-icon>
-          <span>ClearML Python Package setup</span>
-        </button>
-        <a mat-menu-item href="https://www.youtube.com/c/ClearML/featured" target="_blank" data-id="Youtube Option">
-          <mat-icon fontSet="al" fontIcon="al-ico-youtube">Youtube</mat-icon>
-          <span>ClearML on Youtube</span>
-        </a>
-        <a mat-menu-item [href]="environment().docsLink" target="_blank" data-id="Online Documentation Option">
-          <mat-icon fontSet="al" fontIcon="al-ico-documentation">Docs</mat-icon>
-          <span>Online Documentation</span>
-        </a>
-        @if (tipsService.hasTips()) {
-          <button mat-menu-item (click)="tipsService.showTipsModal(null, true)" data-id="Pro Tips Option">
-            <mat-icon fontSet="al" fontIcon="al-ico-tips">Tips</mat-icon>
-            <span>Pro Tips</span>
-          </button>
-        }
-        @if (isAdmin() && !environment().communityServer && changesService.hasChanges()) {
-          <button mat-menu-item (click)="changesService.showChangesModal()" data-id="Pro Tips Option">
-            <mat-icon fontSet="al" fontIcon="al-ico-bullhorn">Notifications</mat-icon>
-            <span>Version Notifications</span>
-          </button>
-        }
-        <ng-container *smCheckPermission="'applications'">
-          @if (environment()?.appsYouTubeIntroVideoId && $any(environment()).appAwarenessMenu !== false) {
-            <button mat-menu-item
-                    (click)="openAppsAwareness($event)" data-id="Apps Introduction Option">
-              <mat-icon fontSet="al" fontIcon="al-ico-applications">Introduction</mat-icon>
-              <span>ClearML Apps Introduction</span>
-            </button>
-          }
-        </ng-container>
-        <a mat-menu-item href="mailto:support@clear.ml" data-id="Contact Us">
-          <mat-icon fontSet="al" fontIcon="al-ico-email">lala</mat-icon>
-          <span>Contact Us</span>
-        </a>
-      </mat-menu>
+      
     </div>
   }
 </div>
