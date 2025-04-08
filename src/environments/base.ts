@@ -70,9 +70,9 @@ export const BASE_ENV = {
   production: true,
   apiBaseUrl: null,
   fileBaseUrl: null,
-  productName: 'ThalosML',
+  productName: 'clearml',
   demo: false,
-  headerPrefix: 'X-ThalosML',
+  headerPrefix: 'X-Clearml', //this is used to prefix the header for the API calls this needs to be changed on the api 
   version: versionConf.version,
   userKey: 'EYVQ385RW7Y2QQUH88CZ7DWIQ1WUHP',
   userSecret: 'XhkH6a6ds9JBnM_MrahYyYdO-wS2bqFSm8gl-V0UZXH26Ydd6Eyi28TeBEoSr6Z3Bes',
