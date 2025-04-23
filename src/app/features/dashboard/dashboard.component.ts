@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
      .subscribe(() => {
        this.store.dispatch(getRecentProjects());
        this.store.dispatch(getRecentExperiments());
-       this.store.dispatch(getRecentReports());
+       //this.store.dispatch(getRecentReports());
      });
 
     
